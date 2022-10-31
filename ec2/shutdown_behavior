@@ -1,0 +1,18 @@
+Shutdown Behavior
+
+Shutdown Behavior: How should the insstance react when showdown is done using the OS?
+  - Stop (default)
+  - Terminate
+
+This is not applicable when shutting down fomr AWS console
+CLI Attribute: InstanceInitiatedShutdownBehavior
+
+
+Termination Behavior
+
+Enable termination protection:
+  To protect against accidental termination in AWS Console or CLI
+
+Exam Tip:
+  We have an instance where shutdown behavior = terminate and enable terminate protection is ticked
+  We shutdown the instance from the OS, what will happen? The instance will be terminated!
