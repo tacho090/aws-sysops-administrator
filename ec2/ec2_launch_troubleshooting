@@ -1,0 +1,37 @@
+EC2 Launch Troubleshooting
+
+- #InstanceLimitExceeded: if you get this error, it means that you have reached your limit of max number of VCPUs per region
+
+- On-Demand instance limits are set on a per-region basis
+
+- Example: if you run on-demand (A,C,D,H,I,M,R,T,Z) instance types you'll have 64 vCPUs(default)
+
+- Resolution: Either launch the instance in a different region or request AWS to increase your limit of the region
+
+- NOTE: vCPU-based limits apply to running On-Demand instances and Spot instances
+
+- View Limits on EC2 > Limits > vCPU
+
+- Another view to look at it: Service Quotas > AWS services > EC2 > All Standard
+
+- Compare instance types: EC2 > Instances > Instance Types
+
+--------
+
+- #InsufficientInstanceCapacity: if you get this error, it means AWS does not have enough On-Demand capacity in the particular AZ where the instance is launched.
+
+- Resolution:
+  - Wait a few more minutes before requesting again
+  - If requesting more than 1 requests, break down the requests. If you need 5 instances, rather than a single request of 5, request one by one.
+  - If urgent, submit a request for a different instance type now, which can be resized later
+  - Also, can request the EC2 instance in a different AZ
+
+---------
+
+- #InstanceTerminatesImmediately (goes from pending to terminated)
+
+  - You're reached your EBS volume limit
+  - An EBS snapshot is corrupt
+  - The root EBS volume is encrypted and you do not have permissions to access the KMS key for decryption
+  - The instance store-backed AMI that you used to launch the instance is missing a required part (an image.part.xx file)
+  - To find the exact reason, check out the EC2 console on AWS - instances Description tab, note the reason next to the State transition reason label
