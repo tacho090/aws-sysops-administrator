@@ -35,3 +35,4 @@ EC2 Launch Troubleshooting
   - The root EBS volume is encrypted and you do not have permissions to access the KMS key for decryption
   - The instance store-backed AMI that you used to launch the instance is missing a required part (an image.part.xx file)
   - To find the exact reason, check out the EC2 console on AWS - instances Description tab, note the reason next to the State transition reason label
+

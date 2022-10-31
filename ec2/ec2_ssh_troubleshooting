@@ -1,0 +1,52 @@
+EC2 ssh troubleshooting
+
+- Make sure the private key(pem file) on your linux machine has 400 permissions, else you will get "Unprotected private key file" error
+- Make sure the username for the OS is given correctly when logging via SSH, else you will get "Host key not found", "Permission denied" or "Connection closed by [instance] port 22" error
+- Possible reasons for "Connection timed out" to EC2 instance via SSH
+  - SG is not configured correctly
+  - NACL is not configured correctly
+  - Check the route table for the subnet (routes traffic destined outside VPC to IGW)
+  - Instance doesn't have a public ipv4
+  - CPU load of the instance is high
+
+
+--------
+
+
+ssh vs EC2 Instance Connect
+
+- Connect using SSH
+Inbound Rules
+
+| Type | Protocol | Port | Source |
+|-----|----------| -----| ------- |
+| SSH | TCP | 22 | 1.2.3.4/32
+
+User with IPv4: 1.2.3.4 can access
+User with IPv4: 5.6.7.8 cannot access
+
+- Connect using EC2 Instance Connect
+Inbound rules
+
+A user with a random ip address will make use of the EC2 Instance Connect API who will push a one-time SSH public key into the EC2 instance and connect to it from this ip group we will define next.
+
+| Type | Protocol | Port | Source |
+| ---- | --------| ------| ------ |
+| SSH | TCP | 22 | 18.206.107.24/29 | ---> Allows AWS IP Range 
+
+Steps for configuring network access to an instance:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html#ec2-instance-connect-setup-security-group
+
+AWS IP address ranges json file reference in docs:
+https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html
+
+Search for the ip range in this website:
+https://ip-ranges.amazonaws.com/ip-ranges.json
+
+Example output found:
+{
+  "ip_prefix": "18.206.107.24/29"
+  "region": "us-east-1",
+  "service": "EC2_INSTANCE_CONNECT",
+  "network_border_group": "us-east-1"
+}
