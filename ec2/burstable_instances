@@ -1,0 +1,20 @@
+Burstable Instances (T2/T3)
+
+- AWS has the concept of burstable instances (T2/T3 machines)
+- Burst means that overall, the instance has OK CPU performance
+- When the machine needs to process something unexpected (a spike in load for example), it can burst and CPU can be VERY good.
+- If the machine bursts, it utilizes "busrt credits"
+- If all the credits are gone, the CPU becomes BAD
+- If the machine stops bursting, credits are accumulated over time
+- Burstable instances can be amazing to handle unexpected traffic and getting the insurance that it will be handled correctly
+- If your instance consistently runs low on credit, you need to move to a different kind of non-burstable instance
+
+- Waht happens when credits are exhausted?
+  - Run a CPU stress command (to peak at 100%)
+  - After the credits are exhausted, the measured CPU utilization drops
+
+T2/T3 Unlimited
+  - It is possible to hav an "unlimited burst credit balance"
+  - You pay extra money if you go over your credit balance, but you don't lose in performance
+  - If average CPU usage over a 24-hour period exceeds the baseline, the instance is billed for additional usage per vCPU/hour
+  - Be careful, costs could go high if you're not monitoring the CPU health of your instances
