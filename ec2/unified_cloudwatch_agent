@@ -1,0 +1,64 @@
+Unified CloudWatch Agent
+
+- For virtual servers(EC2 instances, on premises-servers, ...)
+- Collect additional system-level metrics such as RAM, processes, used disk space, etc
+- Collect logs to send to CloudWatch Logs
+  - No logs from inside your EC2 instance will be sent to CLoudWatch LOgs without using an agent
+- Centralized configuration using SSM Parameter Store
+- Make sure IAM permissions are correct
+- Default namespace for metrics collected by the Unified CloudWatch agent is CWAgent (can be configured/changed)
+- Collect metrics and monitor system utilization of individual processes
+- Support both Linux and Windows servers
+- Example: amount of time the process uses CPU, amount of memory the process uses, ...
+- Select which processes to monitor by
+  - pid_file: name of process identification number(PID) files they create
+  - exe: process name that match string you specify (RegEx)
+  - pattern: command lines used to start the processes (RegEx)
+- Metrics collected by procstat plugin begins with "procstat" prefix (e.g. procstat_cpu_time, procstat_cpu_usage)
+
+To initiate this agent in an EC2 instance:
+
+- Create IAM Role CloudWatchAgent AmazonEC2RoleForCloudWatch with the following summary:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeTags",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams",
+                "logs:DescribeLogGroups",
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter"
+            ],
+            "Resource": "arn:aws:ssm:*:*:parameter/AmazonCloudWatch-*"
+        }
+    ]
+}
+
+- Assign this agent to an EC2 instance
+- SSH into the instance
+- install httpd
+  - yum install httpd
+  - systemctl start httpd
+  - systemctl enable httpd
+  - install the agent
+    - wget https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm 
+    - sudo rpm -U ./amazon-cloudwatch-agent.rpm
+  - runthe wizard
+    - sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+  - complete all the steps and export the configuration to the ssm parameter store
+  - automatically import configuration to a new ec2 instance
+    - sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-linux -s
+
