@@ -1,0 +1,12 @@
+Status Checks
+
+- Automated checks to identify hardware and software issues
+
+- System Status Checks
+  - Monitors problems with AWS systems (software/hardware issues on the physical host, loss of system power)
+  - Check Personal Health Dashboard for any scheduled critical maintenance by AWS to your instance's host
+  - Resolution: stop and start the instance (instance migrated to a new host)
+
+- Instance Status Checks
+  - Monitors software/network configuration of your instance(invalid network configuration, exhausted memory)
+  - Resolution: reboot the instance or change instance configuration

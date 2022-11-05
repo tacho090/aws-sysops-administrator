@@ -61,4 +61,4 @@ To initiate this agent in an EC2 instance:
   - complete all the steps and export the configuration to the ssm parameter store
   - automatically import configuration to a new ec2 instance
     - sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-linux -s
-
+  - review access logs on log groups in CloudWatch section of the console
