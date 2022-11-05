@@ -1,0 +1,9 @@
+EC2 included metrics
+
+- CPU: CPU Utilization + Credit Usage/Balance
+- Network: Network In/Out
+- Status Check:
+  - Instance status = check the EC2 VM
+  - System status = check the underlying hardware
+- Disk: Read/Write for Ops/Bytes (only for instance store)
+- RAM is NOT included in the AWS EC2 metrics
