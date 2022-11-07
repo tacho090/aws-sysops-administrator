@@ -10,3 +10,17 @@ Status Checks
 - Instance Status Checks
   - Monitors software/network configuration of your instance(invalid network configuration, exhausted memory)
   - Resolution: reboot the instance or change instance configuration
+
+CW Metrics & Recovery
+
+- CloudWatch Metrics(1 minute interval)
+  - StatusCheckFailed_System
+  - StatusCheckFailed_Instance
+  - StatusCheckFailed(for both)
+- Option 1: CloudWatch Alarm
+  - Recover EC2 instance with the same private/public IP, EIP, metadata and Placement Group
+  - Send notifications using SNS
+- Option 2: Auto Scaling Group
+  - Set min/max/desired to recover an instance but won't keep the same private and elastic IP
+
+You can create a status check alarm by clicking under Status Checks and creating an alarm
