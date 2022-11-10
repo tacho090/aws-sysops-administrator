@@ -24,3 +24,47 @@ CW Metrics & Recovery
   - Set min/max/desired to recover an instance but won't keep the same private and elastic IP
 
 You can create a status check alarm by clicking under Status Checks and creating an alarm
+
+Manually set alarms for testing
+
+1. aws cloudwatch set-alarm-state --alarm-name awsec2-i-04ed760382c496313-GreaterThanOrEqualToThreshold-StatusCheckFailed_System --state-value ALARM --state-reason "testing recovery action"
+
+2. Review alarm state for ec2 instance
+
+SYSTEM status checks
+System status checks monitor the AWS systems on which your instance runs
+
+Problem with the underlying host. Example: 
+
+Loss of network connectivity
+
+Loss of system power
+
+Software issues on the physical host
+
+Hardware issues on the physical host that impact network reachability
+
+Either wait for AWS to fix the host, OR
+
+Move the EC2 instance to a new host = STOP & START the instance (if EBS backed)
+
+
+
+INSTANCE status checks
+Instance status checks monitor the software and network configuration of your individual instance
+
+Example of issues
+
+Incorrect networking or startup configuration
+
+Exhausted memory
+
+Corrupted file system
+
+Incompatible kernel
+
+Requires your involvement to fix
+
+Restart the EC2 instance, OR
+
+Change the EC2 instance configuration
