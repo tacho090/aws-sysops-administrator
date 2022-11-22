@@ -1,3 +1,4 @@
+
 AMI Overview
 
 - AMI=Amazon Machine Image
@@ -9,3 +10,29 @@ AMI Overview
   - A public AMI: AWS provided
   - Your own AMI: you make and maintain them yourself
   - An AWS Marketplace AMI: an AMI someone else made (and potentially sells)
+
+AMI No-Reboot option
+
+- Enables you to create an AMI without shutting down your instance
+- By default, it's not selected (AWS will shit down the instance before creating an AMI to maintain the file system integrity)
+- With No-Reboot Disabled(default)
+    EC2 instance(running) -> shut down -> EC2 instance stoppped --> attached EBS volume --> EBS snapshot --> AMI
+
+- With No-Reboot Enabled
+    EC2 Instance (running) --> Attached EBS volume --> EBS snapshot --> create image --> AMI
+    Note: OS buffers are not flushed to disk before snapshot is created
+
+Cross Account AMI Sharing
+
+- You can share an AMI with another AWS account
+- Sharing an AMI does not affect the ownership of the MIA
+- You can only share AMIs that have unencrypted volumes and volumes that are encrypted with a customer managed key
+- If you share an AMI with encrypted volumes, you must also share any customer managed keys used to encrypt them
+- You need to assign IAM permissions to a role to share this encrption with account B
+
+Cross Account AMI Copy
+
+- If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account
+- The owner of the source AMI must grant you read permissions for the storage that backs the AMI (EBS snapshot)
+- If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well
+- Can encrypt the AMI with your own CMK while copying 
