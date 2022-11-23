@@ -1,0 +1,35 @@
+AWS System Manager Features
+
+Resource Groups
+
+Operations Management
+- Explorer
+- OpsCenter
+- CloudWatch Dashboard
+- PHD
+- IncidentManager
+
+Shared Resources
+- Documents
+
+Change Management
+- Change Manager
+- Automation
+- Change Calendar
+- Maintenance Windows
+
+Application Management
+- Application Manager
+- AppConfig
+- Parameter Store
+
+Node Management
+- Fleet Manager
+- Compliance
+- Inventory
+- Hybrid Activations
+- Sesion Manager
+- Run Command
+- State Manager
+- Patch Manager
+- Distributer

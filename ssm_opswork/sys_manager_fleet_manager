@@ -1,0 +1,9 @@
+AWS Systems Manager Fleet Manager
+
+Streamline your node management. manage and troubleshoot nodes, including Amazon EC2 instances, edge devices, andon-premises servers and virtual machines
+
+Role for EC2Role for SSM
+
+AmazonEC2RoleforSSM
+
+YOU NEED TO CREATE THIS ROLE FOR THE FLEET MANAGER TO CONTROL THESE INSTANCES
