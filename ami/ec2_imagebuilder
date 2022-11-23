@@ -1,0 +1,5 @@
+Roles for EC2 Image Builder
+
+EC2InstanceProfileForImageBuilderECRContainerBuilds
+EC2InstanceProfileForImageBuilder
+AmazonSSMManagedInstanceCore
