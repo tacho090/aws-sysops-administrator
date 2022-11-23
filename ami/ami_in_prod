@@ -1,0 +1,4 @@
+AMI in Production
+
+- You can force users to only launch EC2 instances from pre-approved AMIs (amiS TAGGED WITH SPECIFIC TAGS) using IAM policies
+- Combine with AWS Config to find non-compliant EC2 instance (instances launched with non-approved AMIs)

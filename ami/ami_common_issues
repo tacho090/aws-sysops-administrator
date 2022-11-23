@@ -1,0 +1,19 @@
+1. You are launching an EC2 instance in us-east-1 using AWS Lambda in us-east-1 using this Python script snippet:
+
+ec2.create_instances(ImageId='ami-0dc2d3e4c0f9ebd18', MinCount=1, MaxCount=1)
+
+It works well, so you decide to deploy your AWS Lambda function in us-west-1 as well. There, the function does not work and fails with InvalidAMIID.NotFound error. What's the problem?
+
+- AMI is region locked and the same AMI ID cannot be used across regions
+
+2. What are the steps required to migrate an EC2 instance to another AZ?
+
+- Create an AMI from the EC2 instance, the n use this AMI to create new EC2 instance in the desired subnet/AZ
+
+3. You have an AMI that has an encrypted EBS Snapshot. You want to share this AMI with another AWS account. You have shared the AMI with the desired AWS account, but the other AWS account can't use it. How would you solve this problem?
+
+- You need to share the KMS CMK used to encrypt the AMI with the other AWS account
+
+4. Your company has a critical application that's hosted on 100s of EC2 instances. The security team has created an AMI that's updated and has all the security patches installed. The DevOps team must create the EC2 instances from the AMI approved by the security team, but there's no IAM policy to prevent them from using another AMI. What AWS service would you use to ensure that all the EC2 instances are launched using the approved AMI?
+
+- AWS Config
