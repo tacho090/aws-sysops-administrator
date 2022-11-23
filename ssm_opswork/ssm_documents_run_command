@@ -1,0 +1,42 @@
+SSM-Run Command
+
+- Execute a document(=script) or just run a command
+- Run command across multiple instances (using resource groups)
+- Rate Control/Error Control
+- Integrated with IAM & CloudTrail
+- No need for SSH
+- Command Output can be shown in the Console, sent to S3 bucket or CloudWatch Logs
+- Send notifications to SNS about command statuses(in progress, success, failed)
+- Can be invoked using EventBridge
+
+1. AWS SSM
+2. Run Command
+3. Create command
+4. Assign to EC2
+5. Paste command, generally in yaml such as the following
+
+---
+schemaVersion: '2.2'
+description: Sample YAML template to install Apache
+parameters:
+  Message:
+    type: "String"
+    description: "Welcome Message"
+    default: "Hello World"
+mainSteps:
+- action: aws:runShellScript
+  name: configureApache
+  inputs:
+    runCommand:
+    - 'sudo yum update -y'
+    - 'sudo yum install -y httpd'
+    - 'sudo systemctl start httpd'
+    - 'sudo systemctl enable httpd'
+    - 'echo "{{Message}} from $(hostname -f)" > /var/www/html/index.html'
+
+6. Specify targets (onstance tags, resource groups)
+7. Specify timeout
+8. Rate control (concurrency, error threshold)
+9. Enable CLoudWatchLogs
+10.Save command line interface if needed
+11. Open HTTP port to instance 

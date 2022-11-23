@@ -1,0 +1,22 @@
+SSM - Documents
+
+- Documents can be in JSON or YAML
+- You define parameters
+- You define actions
+- Many documents already exist in AWS
+
+Example:
+
+---
+schemaVersion: '2.2'
+description: State Manager Bootstrap Example
+parameters: {}
+mainSteps:
+  - action: aws:runShellScript
+    name: configureServer
+    inputs:
+      runCommand:
+        - sudo yum install -y httpd
+        - sudo yum --enablerepo=epel install -y clamav
+
+
