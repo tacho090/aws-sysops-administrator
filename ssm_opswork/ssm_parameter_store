@@ -1,0 +1,36 @@
+SSM Parameter Store
+
+- Secure storage for configuration and secrets
+- optional seamless encryption using KMS
+- Serverless, scalable, durable, easy SDK
+- Version tracking of configurations/ secrets
+- Security through IAM
+- Notifications with Amazon EventBridge
+- Integration with CloudFormation
+
+SSM Parameter Store Hierarchy
+
+/my-department/
+  my-app/
+    dev/
+      db-url
+      db-password
+    prod/
+      db-url
+      db-password
+  other-app/
+/other-department/
+(parameter store secret)/aws/reference/secretsmanager/secret_ID_in_Secrets_Manager
+(api call)/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2(public)
+
+You can access different parameters from the parameter store by leveraging lambda functions
+
+| | Standard | Advanced |
+--------------------------
+| Total number of parameters allowed (per AWS account and Region) | 10000 | 100000
+| maximum size of a parameter value | 4KB | 8KB |
+| Parameter policies available | No | Yes |
+| Cost | No additional charge | Charges apply |
+| Storage Pricing | free | 40.05 per advanced parameter per month |
+
+

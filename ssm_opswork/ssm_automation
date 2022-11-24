@@ -1,0 +1,13 @@
+SSM Automation
+
+- Simplifies common maintenance and deployment tasks of EC2 instances and other AWS resources
+- Example: restart instances, create an AMI, EBS snapshot
+- Automation Runbook
+  - SSM Documents of type Automation
+  - Defines actions preformed on your EC2 instances or AWS resources
+  - pre-defined runbooks(AWS) or create custom runbooks
+- Can be triggered
+  - Manually using AWS console, AWS CLI or SDK
+  - By Amazon EventBridge
+  - On a schedule using Maintenance windows
+  - By AWS Config for rules remediations
