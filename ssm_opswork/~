@@ -41,7 +41,6 @@ Get parameters with decryptionm
 
 aws ssm get-parameters --names /myapp/dev/db-url /myapp/dev/db-password --with-decryption
 
-Use path to get parameters
+Use path to search for the params
 
 aws ssm get-parameters-by-path --path /myapp --recursive
-
