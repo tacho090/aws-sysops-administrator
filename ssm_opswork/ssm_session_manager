@@ -9,3 +9,9 @@ SSM-Session Manager
 - CloudTrail can intercept StartSession events
 
 User ------>IAM Permissions------> Session Manager -------> Execute commands ------> EC2 instance (SSM Agent)
+
+- IAM Permissions
+	- Control which users/groups can access Session Manager and which instances
+	- Use tags to restrict access to only specific EC2 instances
+	- Access SSM + write to S3 + write to CloudWatch
+- Optionally. you can restrict commands a user can run in a session
