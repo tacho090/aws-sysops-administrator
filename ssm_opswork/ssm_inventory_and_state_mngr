@@ -1,0 +1,18 @@
+SSM Inventory
+
+- Collect metadata from your managed isntances(EC2/On-premises)
+- Metadata includes installed software, OS drivers, configurations, installed updates, running services...
+- View data in AWS console or store in S3 and query and analyze using Athena and QuickSight
+- Specify metadata collection intervals(minutes, hours, days)
+- Query data from multiple AWS accounts and regions
+- Create Custom inventory for your custom metadata (e.g., rack location of each managed instance)
+
+SSM - State Manager
+
+-  Automate the process of keeping your managed instances(EC2/On-premises) in a state that you define
+- Use cases: bootstrap instances with software, patch OS/software updates on a schedule
+- State Manager Association:
+	- Defines the state that you want to maintain to your managed instances
+	- Example: port 22 must be closed, antivirus must be installed
+	- Specify a schedule when this configuration is applied
+- Uses SSM Documents to create en Association (e.g., SSM Document to configure CW Agent)

@@ -1,0 +1,9 @@
+SSM-Maintenance Windows
+
+- Defines a schedule for when to perform actions on your instances
+- Example: OS patchin, updateing drivers, installing software
+- Maintenance Window contains
+	- Schedule
+	- Duration
+	- Set of registered instances
+	- Set of registered tasks

@@ -1,0 +1,11 @@
+SSM-Session Manager
+
+- Allows you to start a secure shell on your EC2 and on-premises servers
+- Access through AWS Console, AWS CLI, or Session Manager SDK
+- Does not need SSH access, bastion hosts, or ssh keys
+- Supports Linux, macOS and Windows
+- Log connections to your instances and execute commands
+- Session log data can be sent to S3 or CloudWatch Logs
+- CloudTrail can intercept StartSession events
+
+User ------>IAM Permissions------> Session Manager -------> Execute commands ------> EC2 instance (SSM Agent)

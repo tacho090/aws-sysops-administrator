@@ -1,0 +1,32 @@
+SSM-Patch Manager
+
+- Automates the process of patching managed instances
+- OS updates, application updates, security updates
+- Supports both EC2 instances and on-premises servers
+- Supports Linux, MacOS and Windows
+- Patch on -demand or on schedule using Maintenance Windows
+- Scan instances and generate patch compliance reports(missing patches)
+- Patch compliance report can be sent to S3
+- Patch Baseline
+	- Defines which patches should and shouldn't be installed on your instances
+	- Ability to create custom patch baselines(specify approved/rejectd patches)
+	- Patches can be auto-approved within days of their release
+	- By default, install only critical patches and patches related to security
+- Patch Group
+	- Associate a set of instances with a specific Patch Baseline
+	- Example: create Patch GRoups for different environments(dev, test, prod)
+	- Instances should be defined with the tag key Patch Group
+	- An instance can nly be in one Patch Group
+	- Patch Group can be registered with only one Patch Baseline
+
+
+AWS Console							EC2 Instances with SSM Agent   || Patch Group | Dev
+
+AWS SDK		-------run Document AWS-RunBatchBaseline--> EC2 Instances with SSM Agent				----SSM Agent Query for Batch Baselines -----> Patch Manager
+
+Maintenance Windows						EC2 Instances with SSM Agent   || Patch Group | Prod 						
+
+Patch Baseline ID | Patch Group | Default
+pb -213123 | Default | Yes
+pb-34567984356 | Dev | No
+ 
