@@ -1,0 +1,22 @@
+ALB Listener Rules
+
+- Processed in order (with default rule)
+- Supported Actions (forward, redirect, fixed response)
+- Rule Conditions:
+	- host-header
+	- http-request-method
+	- path-pattern
+	- source-ip
+	- http-header
+	- query-string
+- Target Group Weighting
+	- Specify weight for each target group on a single Rule
+	- Example: multiple versions of your app, blue/green deployment
+	- Allows you to control the distribution of the traffic to your applications
+
+					------->
+					-------> 80% ------> Target Group 1 
+					------->
+					------->
+Users ------> Application Load Balancer
+					-------> 20% ------> Target Group 2
