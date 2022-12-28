@@ -29,3 +29,10 @@ Requests -----> External ALB 	----> ?Platform=Mobile ----> Target Grop 1(AWS-EC2
 				----> ?Platform=Desktop----> Target Group 2(On premises - private IP routing)
 
 You can obtain the client IP by looking at the X-Forwarded-For header
+
+- Application load balancers is Layer 7(HTTP)
+- Load balancing to multiple HTTP applications across machines(target groups)
+- Load balancing to multiple applications on the same machine(containers)
+- Support for HTTP/2 and WebSocket
+- Support redirects(from HTTP to HTTPS for example)
+
