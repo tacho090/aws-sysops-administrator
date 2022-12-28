@@ -1,0 +1,20 @@
+ELB Health Checks
+
+- Target Health Status
+	Initial: registering the target
+	Healthy
+	Unhealthy
+	Unused: target is not registered
+	Draining: de-registering the target
+	Unavailable: health checks disabled
+- If a target group contains only unhealthy targets, ELB routes requests across its unhealthy targets
+
+Setting | Value | Description |
+-------------------------------
+HealthCheckProtocol | HTTP | Protocol used to perform health checks
+HealthCheckPort | 80 | Port used to perform health checks
+HealthCheckPath | / | Destination for health checks on targets
+HealthCheckTimeoutSeconds | 5 | Consider the health check failed if no response after 5 seconds
+HealthCheckIntervalSeconds | 30 | Send Health checks every 30 seconds
+HealthyThresholdCount | 3 | Consider the target healthy after 3 succesful health checks
+UnhealthyThresholdCount | 5 | Consider the target unhealthy after 5 failed health checks

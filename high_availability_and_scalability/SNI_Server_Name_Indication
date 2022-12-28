@@ -1,0 +1,18 @@
+SNI - Server Name Indication
+
+- SNI solves the problem of loading mutliple SSL certificates onto one web server(to serve multiple websites)
+- It's a newer protocol and requires the client to indicate the hostname of the target server in the initial SSL handshake
+- The server will then find the correct certificate or return the default one
+
+Note:
+- Only works for ALB & NLB(newer generation) & cloudfront
+- Does not work for CLB
+
+
+
+
+
+Client ----> Request www.mycorp.com ---->| ALB				 |---------> Target Group for www.mycorp.com
+					 |				 |---------> Target Group for domain1.example.com
+					 | SSL Cert: domain1.example.com |
+					 | SSL Cert: www.mycorp.com	 |
