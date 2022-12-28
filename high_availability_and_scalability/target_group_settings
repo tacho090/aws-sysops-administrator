@@ -1,0 +1,38 @@
+Target Group Settings
+
+- deregistration_delay.timeout_seconds: time the load balancer waits before deregistering a target
+- slow_start.duration_seconds:
+	- By default, a target receives its full share of requests once it's registered with the target group
+	- Slow Start Mode gives healthy targets time to warm-up before the load balancer sends them a ful share of requests
+	- The load balancer linearly increases the number of requests that it sends to the target
+	- A target exits Slow Start Mode when:
+		- The duration period elapses
+		- The target becomes unhealth
+- To disable, set Slow start duration value to 0
+- load_balancing.algorithm.type: how the load balancer selects targets when routing requests (Round Robin, Least Outstanding Requests)
+	- Least Outstanding Requests
+		- The next instance to receive the request is the instance that has the lowest number of pending/unfinished requests
+		- Works with application load balancer and classic load balancer(HTTP/HTTPS)
+	- Round Robin
+		- Equally choose the targets from the target group
+		- Works with ALB and CLB(TCP)
+	- Flow Hash
+		- Selects a target based on the protocol, source/destination IP address, source/destination port and TCP sequence number
+		- Each TCP/UDP connection is routed to a single target for the life of the connection
+		- Works with NLB
+
+Flow Hash diagram
+
+User ----->
+
+User ----->  	Application Load Balancer	Protocol
+						Source & destination IP	   -----> Flow Hash algorithm ----> hash 287sd... ----> EC2 instance
+User ----->					Source & destination Port
+						TCP sequence no.
+User ----->
+
+- stickiness.enabled
+- stickiness.type: application-based or duration-based cookie
+- stickiness.app_cookie.cookie_name: name of the application cookie
+- stickiness.app_cookie.duration_seconds: application-based cookie expiration period
+- stickiness.lb_cookie.duration_second: duration-based cookie expiration period
